@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: changeme
       POSTGRES_DB: chatbot_db
     ports:
-      - '5432:5432'
+      - '5434:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -22,7 +22,7 @@ services:
     image: redis:7-alpine
     container_name: chatbot_redis
     ports:
-      - '6379:6379'
+      - '6380:6379'
     volumes:
       - redis_data:/data
     healthcheck:
@@ -39,8 +39,8 @@ services:
     environment:
       NODE_ENV: development
       API_HOST: 0.0.0.0
-      API_PORT: 3000
-      WS_PORT: 3001
+      API_PORT: 3005
+      WS_PORT: 3006
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: chatbot_user
@@ -48,11 +48,12 @@ services:
       DB_NAME: chatbot_db
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      DATABASE_URL: postgres://chatbot_user:changeme@postgres:5432/chatbot_db
       JWT_ACCESS_SECRET: development-secret-key
       JWT_REFRESH_SECRET: development-refresh-secret
     ports:
-      - '3000:3000'
-      - '3001:3001'
+      - '3005:3005'
+      - '3006:3006'
     depends_on:
       postgres:
         condition: service_healthy

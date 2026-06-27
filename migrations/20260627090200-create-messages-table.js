@@ -11,27 +11,23 @@ exports.setup = function (options, _seedLink) {
 };
 
 exports.up = function (db) {
-  return db.createTable('messages', {
-    id: { type: 'uuid', primaryKey: true, defaultValue: new String('gen_random_uuid()') },
-    conversation_id: { type: 'uuid', notNull: true, foreignKey: { name: 'fk_messages_conversation_id', table: 'conversations', rules: { onDelete: 'CASCADE' } } },
-    sender_id: { type: 'uuid', notNull: true, foreignKey: { name: 'fk_messages_sender_id', table: 'users', rules: { onDelete: 'CASCADE' } } },
-    role: { type: 'string', length: 50, notNull: true }, // 'user' or 'assistant'
-    content: { type: 'text', notNull: true },
-    created_at: { type: 'datetime', defaultValue: new String('CURRENT_TIMESTAMP') },
-  })
-  .then(function() {
-    return db.addIndex('messages', 'idx_messages_conversation_id', ['conversation_id']);
-  })
-  .then(function() {
-    return db.addIndex('messages', 'idx_messages_sender_id', ['sender_id']);
-  })
-  .then(function() {
-    return db.addIndex('messages', 'idx_messages_created_at', ['created_at']);
-  });
+  return db.runSql(`
+    CREATE TABLE messages (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      conversation_id UUID NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+      sender_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      role VARCHAR(50) NOT NULL,
+      content TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX idx_messages_conversation_id ON messages(conversation_id);
+    CREATE INDEX idx_messages_sender_id ON messages(sender_id);
+    CREATE INDEX idx_messages_created_at ON messages(created_at);
+  `);
 };
 
 exports.down = function (db) {
-  return db.dropTable('messages');
+  return db.runSql('DROP TABLE IF EXISTS messages CASCADE');
 };
 
 exports._meta = {

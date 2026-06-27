@@ -11,17 +11,19 @@ exports.setup = function (options, _seedLink) {
 };
 
 exports.up = function (db) {
-  return db.createTable('users', {
-    id: { type: 'uuid', primaryKey: true, defaultValue: new String('gen_random_uuid()') },
-    email: { type: 'string', length: 255, notNull: true, unique: true },
-    password_hash: { type: 'text', notNull: true },
-    created_at: { type: 'datetime', defaultValue: new String('CURRENT_TIMESTAMP') },
-    updated_at: { type: 'datetime', defaultValue: new String('CURRENT_TIMESTAMP') },
-  });
+  return db.runSql(`
+    CREATE TABLE users (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      email VARCHAR(255) UNIQUE NOT NULL,
+      password_hash TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
 };
 
 exports.down = function (db) {
-  return db.dropTable('users');
+  return db.runSql('DROP TABLE IF EXISTS users CASCADE');
 };
 
 exports._meta = {

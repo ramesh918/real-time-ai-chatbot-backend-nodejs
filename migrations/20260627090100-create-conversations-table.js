@@ -11,20 +11,20 @@ exports.setup = function (options, _seedLink) {
 };
 
 exports.up = function (db) {
-  return db.createTable('conversations', {
-    id: { type: 'uuid', primaryKey: true, defaultValue: new String('gen_random_uuid()') },
-    user_id: { type: 'uuid', notNull: true, foreignKey: { name: 'fk_conversations_user_id', table: 'users', rules: { onDelete: 'CASCADE' } } },
-    name: { type: 'string', length: 255, notNull: true },
-    created_at: { type: 'datetime', defaultValue: new String('CURRENT_TIMESTAMP') },
-    updated_at: { type: 'datetime', defaultValue: new String('CURRENT_TIMESTAMP') },
-  })
-  .then(function() {
-    return db.addIndex('conversations', 'idx_conversations_user_id', ['user_id']);
-  });
+  return db.runSql(`
+    CREATE TABLE conversations (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      name VARCHAR(255) NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX idx_conversations_user_id ON conversations(user_id);
+  `);
 };
 
 exports.down = function (db) {
-  return db.dropTable('conversations');
+  return db.runSql('DROP TABLE IF EXISTS conversations CASCADE');
 };
 
 exports._meta = {
