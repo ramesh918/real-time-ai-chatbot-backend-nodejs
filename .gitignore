@@ -141,3 +141,7 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Assignment and prompts (must never reach remote)
+Backend_AI_Chat_Test_Assignment.pdf
+prompt.md
