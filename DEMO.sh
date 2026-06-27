@@ -11,8 +11,8 @@
 
 set -e
 
-BASE_URL="http://localhost:3000"
-WS_URL="ws://localhost:3001"
+BASE_URL="http://localhost:3005"
+WS_URL="ws://localhost:3006"
 
 echo "=== Real-Time AI Chat Backend Demo ==="
 echo ""
