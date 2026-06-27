@@ -1,0 +1,52 @@
+{
+  "name": "real-time-ai-chatbot-backend-nodejs",
+  "version": "1.0.0",
+  "description": "real-time-ai-chatbot-backend",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run migrate && node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "migrate": "db-migrate up --env docker",
+    "migrate:create": "db-migrate create",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramesh918/real-time-ai-chatbot-backend-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ramesh918/real-time-ai-chatbot-backend-nodejs/issues"
+  },
+  "homepage": "https://github.com/ramesh918/real-time-ai-chatbot-backend-nodejs#readme",
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.0.1",
+    "argon2": "^0.44.0",
+    "db-migrate": "^0.11.14",
+    "db-migrate-pg": "^1.5.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.22.0",
+    "redis": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "winston": "^3.19.0",
+    "ws": "^8.21.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "@types/ws": "^8.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
+    "eslint": "^10.6.0",
+    "prettier": "^3.8.5"
+  }
+}

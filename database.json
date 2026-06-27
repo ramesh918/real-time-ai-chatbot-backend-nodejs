@@ -1,0 +1,18 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "localhost",
+    "port": 5432,
+    "database": "chatbot_db",
+    "user": "chatbot_user",
+    "password": "changeme"
+  },
+  "docker": {
+    "driver": "pg",
+    "host": "postgres",
+    "port": 5432,
+    "database": "chatbot_db",
+    "user": "chatbot_user",
+    "password": "changeme"
+  }
+}
