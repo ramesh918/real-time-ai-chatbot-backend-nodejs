@@ -65,29 +65,29 @@ Build a real-time chat backend where authenticated users open WebSocket connecti
 - [x] 31. Implement cross-instance message routing: messages from Redis pub/sub reach clients on this instance
 
 ### Phase 7: Error Handling & Robustness
-- [ ] 32. Add error boundary in WebSocket handlers (failed DB writes don't crash socket)
+- [x] 32. Add error boundary in WebSocket handlers (failed DB writes don't crash socket)
 - [x] 33. Add validation at every boundary (Zod/joi schemas for incoming payloads)
 - [x] 34. Implement structured logging (correlate requests, log errors with context)
 - [x] 35. Add connection timeout and heartbeat mechanism to detect dead connections
-- [ ] 36. Test failure scenarios: DB down, Redis down, invalid tokens, malformed messages
+- [x] 36. Test failure scenarios: DB down, Redis down, invalid tokens, malformed messages
 
 ### Phase 8: Docker & Deployment
 - [x] 37. Create Dockerfile (multi-stage build, runs migrations, starts app)
 - [x] 38. Create docker-compose.yml (API service + PostgreSQL + Redis, volume for DB data)
-- [ ] 39. Test docker compose up on clean machine (no external dependencies)
-- [ ] 40. Verify migrations run automatically or document run command
+- [x] 39. Test docker compose up on clean machine (no external dependencies)
+- [x] 40. Verify migrations run automatically or document run command
 
 ### Phase 9: Testing
-- [ ] 41. Write unit tests: password hashing, JWT validation
-- [ ] 42. Write integration test: send message → persist → broadcast across single instance
-- [ ] 43. Write integration test: message via Redis pub/sub reaches client (cross-instance simulation)
-- [ ] 44. Write test: reconnect after disconnect retrieves message history
+- [x] 41. Write unit tests: password hashing, JWT validation
+- [x] 42. Write integration test: send message → persist → broadcast across single instance
+- [x] 43. Write integration test: message via Redis pub/sub reaches client (cross-instance simulation)
+- [x] 44. Write test: reconnect after disconnect retrieves message history
 
 ### Phase 10: Documentation & Demo
-- [ ] 45. Write README.md (setup, run, test, troubleshoot)
-- [ ] 46. Write NOTES.md (architecture decisions, WebSocket auth choice, what was cut/why, self-critique)
-- [ ] 47. Create demo script or documented curl/websocat sequence (sign up → open socket → send → broadcast → history)
-- [ ] 48. Verify demo works end-to-end
+- [x] 45. Write README.md (setup, run, test, troubleshoot)
+- [x] 46. Write NOTES.md (architecture decisions, WebSocket auth choice, what was cut/why, self-critique)
+- [x] 47. Create demo script or documented curl/websocat sequence (sign up → open socket → send → broadcast → history)
+- [x] 48. Verify demo works end-to-end
 
 ---
 
